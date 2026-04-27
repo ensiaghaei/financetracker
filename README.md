@@ -1,7 +1,12 @@
 # Finance Tracker API
-
+This project demonstrates backend development skills including REST API design, database integration, testing, and containerization.
 A RESTful API for managing personal expenses.  
 The project includes CRUD operations, validation, exception handling, filtering, pagination, PostgreSQL database integration, and Docker support.
+
+## Live Demo
+
+Base URL:
+http://3.96.64.137:8080/api/expenses
 
 ## Tech Stack
 
@@ -32,6 +37,13 @@ The project includes CRUD operations, validation, exception handling, filtering,
 - Database healthcheck
 - Unit and integration tests
 
+## API Endpoints
+
+- GET /api/expenses → get all expenses
+- GET /api/expenses/{id} → get expense by id
+- POST /api/expenses → create expense
+- PUT /api/expenses/{id} → update expense
+- DELETE /api/expenses/{id} → delete expense
 ## Run Locally
 
 Make sure PostgreSQL is running locally on port 5432
@@ -65,4 +77,17 @@ POSTGRES_PASSWORD=finance_pass
 SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/finance_db
 SPRING_DATASOURCE_USERNAME=finance_user
 SPRING_DATASOURCE_PASSWORD=finance_pass
+```
+## Sample Request
+
+POST /api/expenses
+
+```json
+{
+  "title": "Coffee",
+  "amount": 5.5,
+  "category": "Food",
+  "expenseDate": "2026-04-15",
+  "note": "Starbucks"
+}
 ```
