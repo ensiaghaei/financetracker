@@ -91,3 +91,54 @@ POST /api/expenses
   "note": "Starbucks"
 }
 ```
+# Deployment (AWS EC2)
+The application is deployed on an AWS EC2 instance using Docker and Docker Compose.
+## Infrastructure
+- AWS EC2 (Ubuntu)
+- Docker & Docker Compose
+- Security Group configured to allow traffic on port 8080
+
+## Steps to Deploy
+Connect to Ec2:
+```bash
+ssh ubuntu@<your-public-ip>
+```
+Clone the repository:
+```bash
+git clone https://github.com/ensiaghaei/financetracker.git
+cd financetracker
+```
+Start the application:
+```bash
+docker compose up --build -d
+```
+## Access
+The API is accessible via:
+```bash
+http://<your-public-ip>:8080/api/expenses
+```
+### Test the API
+Replace `<your-public-ip>` with your EC2 public IP address.
+Use the following command to create a sample expense:
+```bash
+curl -X POST http://<your-public-ip>:8080/api/expenses \
+-H "Content-Type: application/json" \
+-d '{
+  "title": "Coffee",
+  "amount": 5.5,
+  "category": "Food",
+  "expenseDate": "2026-04-15",
+  "note": "Starbucks"
+}'
+```
+### Get all expenses:
+```bash
+curl http://<your-public-ip>:8080/api/expenses
+```
+## Persistence
+PostgreSQL data is persisted using Docker volumes:
+- Data remains intact after container restarts
+- Verified by restarting containers and EC2 instance
+## Restart Behavior
+- Containers are configured with restarts:always
+- Application automatically starts after EC2 reboot
