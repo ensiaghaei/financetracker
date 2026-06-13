@@ -4,9 +4,7 @@ A RESTful API for managing personal expenses.
 The project includes CRUD operations, validation, exception handling, filtering, pagination, PostgreSQL database integration, and Docker support.
 
 ## Live Demo
-
-Base URL:
-http://3.96.64.137:8080/api/expenses
+Deployed on AWS EC2 using Docker and PostgreSQL.
 
 ## Tech Stack
 
@@ -91,6 +89,27 @@ POST /api/expenses
   "note": "Starbucks"
 }
 ```
+## Architecture
+
+Controller
+→ Service
+→ Repository
+→ PostgreSQL
+
+GlobalExceptionHandler handles API errors.
+DTOs are used for request validation and response mapping.
+## Project Structure
+```
+src/main/java/com/ensi/financetracker
+
+├── controller
+├── service
+├── repository
+├── entity
+├── dto
+├── exception
+└── config
+```
 # Deployment (AWS EC2)
 The application is deployed on an AWS EC2 instance using Docker and Docker Compose.
 ## Infrastructure
@@ -117,6 +136,11 @@ The API is accessible via:
 ```bash
 http://<your-public-ip>:8080/api/expenses
 ```
+## Testing
+
+- Unit tests using JUnit 5 and Mockito
+- Controller tests using MockMvc
+- Service layer testing with mocked repositories
 ### Test the API
 Replace `<your-public-ip>` with your EC2 public IP address.
 Use the following command to create a sample expense:
